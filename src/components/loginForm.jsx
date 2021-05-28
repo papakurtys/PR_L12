@@ -25,6 +25,7 @@ class LoginForm extends Component {
         return Object.keys(errors).length === 0 ? null : errors;
     };
 
+
     handleSubmit = (event) => {
         event.preventDefault();
 
@@ -34,7 +35,7 @@ class LoginForm extends Component {
 
         axios({
             method: 'post',
-            url: 'http://localhost:3001/api/user/auth',
+            url: 'http://localhost:3002/api/user/auth',
             data: {
                 login: this.state.account.username,
                 password: this.state.account.password
@@ -54,6 +55,11 @@ class LoginForm extends Component {
         const account = {...this.state.account};
         account[event.currentTarget.name] = event.currentTarget.value;
         this.setState({account});
+    };
+
+    handleChangeRoute = () => {
+       this.props.history.push('/');
+       window.location.reload();
     };
 
     render() {
